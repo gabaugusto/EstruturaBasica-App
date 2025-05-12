@@ -20,14 +20,16 @@ import androidx.navigation.compose.rememberNavController
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
+
+        enableEdgeToEdge() // Enable edge-to-edge permite que o conteúdo ocupe toda a tela
+        setContent { // Define o conteúdo da tela
             EstruturaBasicaTheme {
                 // Surface container é usado para aplicar o tema ao conteúdo
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
+                    color = MaterialTheme.colorScheme.surface
                 ) {
                     val navController = rememberNavController()
                     AppNavigation(navController = navController)

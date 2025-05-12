@@ -6,6 +6,9 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Email
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.sharp.AddCircle
+import androidx.compose.material.icons.sharp.Favorite
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -15,18 +18,21 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import com.sample.estruturabasica.R
 
 @Composable
 fun HomeScreen(navController: NavController) {
+
     Scaffold(
         topBar = {
             CustomTopAppBar(
                 title = "Home",
-                navigationIcon = Icons.Default.Home,
-                showBackButton = false
+                navigationIcon = Icons.Sharp.AddCircle,
+                showBackButton = true
             )
         },
         bottomBar = {
@@ -58,19 +64,10 @@ fun HomeScreen(navController: NavController) {
     }
 }
 
+
+
+@Preview
 @Composable
-fun BottomNavItem(
-    icon: ImageVector,
-    label: String,
-    isSelected: Boolean,
-    onClick: () -> Unit
-) {
-    IconButton(onClick = onClick) {
-        Icon(
-            imageVector = icon,
-            contentDescription = label,
-            tint = if (isSelected) MaterialTheme.colorScheme.primary
-            else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
-        )
-    }
+fun HomeScreenPreview() {
+    HomeScreen(navController = NavController(context = LocalContext.current))
 }

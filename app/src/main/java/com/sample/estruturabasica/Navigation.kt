@@ -7,9 +7,18 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 
+// Define as telas do aplicativo como objetos
+sealed class Screen(val route: String) {
+    object Splash : Screen("splash")
+    object Home : Screen("home")
+    object About : Screen("about")
+    object Contact : Screen("contact")
+}
+
 @Composable
 fun AppNavigation(navController: NavHostController = rememberNavController()) {
     NavHost(
+        // A função NavHost é responsável por gerenciar a navegação entre as telas
         navController = navController,
         startDestination = Screen.Splash.route
     ) {
@@ -26,11 +35,4 @@ fun AppNavigation(navController: NavHostController = rememberNavController()) {
             ContactScreen(navController)
         }
     }
-}
-
-sealed class Screen(val route: String) {
-    object Splash : Screen("splash")
-    object Home : Screen("home")
-    object About : Screen("about")
-    object Contact : Screen("contact")
 }

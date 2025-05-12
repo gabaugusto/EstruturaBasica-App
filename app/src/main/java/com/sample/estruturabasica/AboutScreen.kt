@@ -5,13 +5,21 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Email
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Info
+import androidx.compose.material3.BottomAppBar
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 
@@ -25,7 +33,29 @@ fun AboutScreen(navController: NavController) {
                 showBackButton = true,
                 navController = navController
             )
+        }, bottomBar = {
+            BottomAppBar {
+                BottomNavItem(
+                    icon = Icons.Default.Info,
+                    label = "Sobre",
+                    isSelected = true,
+                    onClick = { /* Já estamos na tela Sobre */ }
+                )
+                BottomNavItem(
+                    icon = Icons.Default.Email,
+                    label = "Contato",
+                    isSelected = false,
+                    onClick = { navController.navigate(Screen.Contact.route) }
+                )
+            }
+        }, floatingActionButton = {
+            FloatingActionButton(
+                onClick = { /* do something */ },
+            ) {
+                Icon(Icons.Filled.Add, "Localized description")
+            }
         }
+
     ) { paddingValues ->
         Column(
             modifier = Modifier
@@ -67,3 +97,12 @@ val iliadText = """
     mas libertai-me a minha filha e aceitai o resgate, 
     por respeito a Zeus Crónida, o longífero Apolo."
 """.trimIndent()
+
+
+@Preview(showBackground = true)
+@Composable
+fun AboutScreenPreview() {
+    AboutScreen(
+        navController = NavController(LocalContext.current) // TODO()
+    )
+}

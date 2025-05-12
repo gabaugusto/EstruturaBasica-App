@@ -8,6 +8,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -15,7 +16,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 
@@ -45,6 +48,12 @@ fun ContactScreen(navController: NavController) {
                 value = name,
                 onValueChange = { setName(it) },
                 label = { Text("Nome") },
+                leadingIcon = {
+                    Icon(
+                        imageVector = Icons.Default.Email,
+                        contentDescription = "Nome"
+                    )
+                },
                 modifier = Modifier.fillMaxWidth()
             )
 
@@ -75,4 +84,12 @@ fun ContactScreen(navController: NavController) {
             }
         }
     }
+}
+
+@Preview
+@Composable
+fun ContactScreenPreview() {
+    ContactScreen(
+        navController = NavController(LocalContext.current) // TODO()
+    )
 }
